@@ -36,3 +36,20 @@
 ## Suggested development methodology: Agile
 - Documented user stories
 - Standup: GitHub post w/ daily work accomplished, current blockers, & future work planned
+
+## Suggested goals
+Divide and organize project features by RESTful endpoints and queries. i.e.:
+### RESTful Server endpoints:
+- Employees (GET/POST/DELETE)
+- Departments (GET)
+
+### Database queries
+- Query: What is the average salary of all employees from department (optional: between salary range)?
+- Query: Which is the employee with the highest salary from all departments?
+- Query: Which is the department with the lowest total payroll amount?
+
+### Example usage
+HTTP GET requests to:
+- Return a list of all employees: `/employees`
+- Return a representation of an employee with id: `/employees/{id}`
+- Return the result of a query: `/employees?query=average`
