@@ -1,4 +1,5 @@
 p1-TarynNicoleJones-AccountSecurity standup #3 and 4
+
 (8/10/21 - 8/11/21)
 
 ## Accomplishments
