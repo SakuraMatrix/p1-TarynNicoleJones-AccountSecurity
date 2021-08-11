@@ -10,6 +10,7 @@ p1-TarynNicoleJones-AccountSecurity standup #3 and 4
 - feeling stonger in Java since completing Udacity Intro to Java and Java OOP, Hackerank problems, and SoloLearn practice
 - researched Information Security
 - started Udacity Intro to Cloud Computing for better background AWS and what it does
+- started Docker course on RevPro for increased insight; already confortable to proceed
 
 ## Issues
 - ~~link from individual vs. team github repository gone (will resolve even w/ brute force on Mon./Tues.)~~
