@@ -9,13 +9,14 @@ p1-TarynNicoleJones-AccountSecurity standup #3 and 4
   - made pull request to merge to docs on SakuraMatrix
 - feeling stonger in Java since completing Udacity Intro to Java and Java OOP, Hackerank problems, and SoloLearn practice
 - researched Information Security
+- started Udacity Intro to Cloud Computing for better background AWS and what it does
 
 ## Issues
 - ~~link from individual vs. team github repository gone (will resolve even w/ brute force on Mon./Tues.)~~
 - ~~still gaining skills in Java as OOP~~
 - given time frame vs. various program on-ramping
   - falling slightly behind Mehrab's pace. had tutoring yesterday evening so did not have chance to implement day's recording (missed coding steps) 
-- lack of AWS, Cassandra, Spring, and Reactor Netty knowledge/ implementation
+- lack of ~~AWS, Cassandra,~~ Spring, and Reactor Netty knowledge/ implementation
 - Mehrab thinks project scope too complex and does not fit project type (info from database)
   - not sure entirely what that means, since I don't fully understand each necessary technologies for project
 
