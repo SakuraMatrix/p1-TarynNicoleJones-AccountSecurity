@@ -8,4 +8,4 @@ CREATE TABLE IF NOT EXISTS item{
     price double,
     PRIMARY KEY (item_id, name)
 
-}
+};
