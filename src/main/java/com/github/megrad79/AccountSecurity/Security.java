@@ -31,13 +31,13 @@ public class Security{
                 // https://projectreactor.io/docs/netty/release/reference/index.html#_routing_http
                 .route(routes ->
                         routes.get("/hello",
-                                        (request, response) -> response.sendString(Mono.just("Hello World!")))
+                                        (request, response) -> response.sendString(Mono.just("Hello World!").log("http-server")))
                                 .post("/echo",
-                                        (request, response) -> response.send(request.receive().retain()))
+                                        (request, response) -> response.send(request.receive().retain().log("http-server")))
                                 .get("/path/{param}",
-                                        (request, response) -> response.sendString(Mono.just(request.param("param"))))
+                                        (request, response) -> response.sendString(Mono.just(request.param("param")).log("http-server")))
                                 .ws("/ws",
-                                        (wsInbound, wsOutbound) -> wsOutbound.send(wsInbound.receive().retain())))
+                                        (wsInbound, wsOutbound) -> wsOutbound.send(wsInbound.receive().retain().log("http-server"))))
                 .bindNow();
 
 
