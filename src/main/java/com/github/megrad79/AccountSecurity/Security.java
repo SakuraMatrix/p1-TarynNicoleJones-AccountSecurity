@@ -41,7 +41,7 @@ public class Security{
 
                     // Serves a GET request to /items/{param} and returns the value of the path parameter.
                     .get("/items/{param}",
-                            (request, response) -> response.sendString(Mono.just(request.param("param")).log("http-server")))
+                            (request, response) -> response.send(itemService.get(request.param("param")).map(Security::toByteBuf).log("http-server")))
 
                     // Serves a GET request to /path/{param} and returns the value of the path parameter.
                     .get("/items",

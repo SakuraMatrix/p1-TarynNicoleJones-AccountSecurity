@@ -6,7 +6,16 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ItemRepository {
+    static List<Item> cache = Arrays.asList(new Item(1, "Potion", 20), new Item(2, "Pokeball", 40));
+
     public List<Item> getAllItems() {
-        return Arrays.asList(new Item(1, "Potion", 20), new Item(2, "Pokeball", 40));
+        return cache;
     }
+
+    public Item get(String id){
+        int itemId = Integer.parseInt(id);
+        return cache.get(itemId - 1);
+    }
+
+
 }
