@@ -1,5 +1,6 @@
 package com.github.megrad79.AccountSecurity;
 
+import com.datastax.oss.driver.api.core.CqlSession;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.megrad79.AccountSecurity.repository.ItemRepository;
 import com.github.megrad79.AccountSecurity.service.ItemService;
@@ -20,7 +21,8 @@ public class Security{
     public static void main(String [] args) throws URISyntaxException {
         Path file = Paths.get(Security.class.getResource("/error.html").toURI());
 
-        ItemRepository itemRepository = new ItemRepository();
+        CqlSession session = CqlSession.builder().build();
+        ItemRepository itemRepository = new ItemRepository(session);
         ItemService itemService = new ItemService(itemRepository);
 
         DisposableServer server =

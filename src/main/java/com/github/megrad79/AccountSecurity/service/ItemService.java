@@ -15,10 +15,10 @@ public class ItemService {
     }
 
     public Mono<Item> get(String id){
-        return Mono.just(itemRepository.get(id));
+        return itemRepository.get(Integer.parseInt(id));
     }
 
     public Flux<Item> getAllItems(){
-        return Flux.fromIterable(itemRepository.getAllItems());
+        return itemRepository.getAllItems();
     }
 }
