@@ -2,7 +2,7 @@ CREATE KEYSPACE IF NOT EXISTS AccountSecurity WITH replication ={'class': 'Simpl
 
 USE AccountSecurity;
 
-CREATE TABLE IF NOT EXISTS item{
+CREATE TABLE IF NOT EXISTS items {
     item_id int,
     name text,
     price double,

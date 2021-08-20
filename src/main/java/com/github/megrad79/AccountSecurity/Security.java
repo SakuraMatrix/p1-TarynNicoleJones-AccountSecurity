@@ -7,13 +7,16 @@ import com.datastax.oss.driver.api.core.metadata.Metadata;
 import com.datastax.oss.driver.api.core.metrics.Metrics;
 import com.datastax.oss.driver.api.core.session.Request;
 import com.datastax.oss.driver.api.core.type.reflect.GenericType;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.megrad79.AccountSecurity.domain.Item;
 import com.github.megrad79.AccountSecurity.repository.ItemRepository;
 import com.github.megrad79.AccountSecurity.service.ItemService;
 import edu.umd.cs.findbugs.annotations.NonNull;
 import edu.umd.cs.findbugs.annotations.Nullable;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufAllocator;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import reactor.core.publisher.Mono;
 import reactor.netty.DisposableServer;
 import reactor.netty.http.server.HttpServer;
@@ -31,11 +34,8 @@ import static com.datastax.oss.driver.api.core.CqlSession.builder;
 
 public class Security{
     public static void main(String [] args) throws URISyntaxException {
-        Path error = Paths.get(Security.class.getResource("/error.html").toURI());
-        Path index = Paths.get(Security.class.getResource("/index.html").toURI());
 
-
-        CqlSession session = new CqlSession() {
+        /*CqlSession session = new CqlSession() {
             @NonNull
             @Override
             public String getName() {
@@ -115,8 +115,8 @@ public class Security{
         };
         ItemRepository itemRepository = new ItemRepository(session);
         ItemService itemService = new ItemService(itemRepository);
-
-        DisposableServer server =
+*/
+        /*DisposableServer server =
             HttpServer.create()   // Prep HTTP server for configuration
             //.host("localhost")
             .port(8080)
@@ -140,7 +140,7 @@ public class Security{
                     .get("/items",
                             (request, response) -> response.send(itemService.getAllItems().map(Security::toByteBuf).log("http-server")))
 
-                    // serves web socket to /ws and returns recieved incoming data as outgoing
+                    // serves web socket to /ws and returns received incoming data as outgoing
                     .ws("/ws",
                             (wsInbound, wsOutbound) -> wsOutbound.send(wsInbound.receive().retain().log("http-server")))
 
@@ -152,12 +152,13 @@ public class Security{
                     .get("/error",
                             (request, response) -> response.status(404).addHeader("Message","Warning - missing content").sendFile(error))
                 )
-                .bindNow();
+                .bindNow();*/
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(SecurityConfig.class);
 
-        server.onDispose().block();
+        context.getBean(DisposableServer.class).onDispose().block();
     }
 
-    private static ByteBuf toByteBuf(Object any) {
+    static ByteBuf toByteBuf(Object any) {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         try {
             out.write("data: ".getBytes(Charset.defaultCharset()));
@@ -170,5 +171,22 @@ public class Security{
         return ByteBufAllocator.DEFAULT.buffer().writeBytes(out.toByteArray());
     }
 
-    private static final ObjectMapper MAPPER = new ObjectMapper();
+    static final ObjectMapper MAPPER = new ObjectMapper();
+
+    static Item parseItem(String s){
+        Item item = null;
+
+        try{
+            item = MAPPER.readValue(s, Item.class);
+        }
+        catch (JsonProcessingException ex){
+            String[] params = s.split("&");
+            int id = Integer.parseInt(params[0].split("=")[1]);
+            String name = params[1].split("=")[1];
+            double price = Double.parseDouble(params[2].split("=")[1]);
+
+            item = new Item(id, name, price);
+        }
+        return item;
+    }
 }
