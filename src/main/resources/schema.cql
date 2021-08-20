@@ -3,9 +3,9 @@ CREATE KEYSPACE IF NOT EXISTS AccountSecurity WITH replication ={'class': 'Simpl
 USE AccountSecurity;
 
 CREATE TABLE IF NOT EXISTS items {
-    item_id int,
-    name text,
-    price double,
-    PRIMARY KEY (item_id, name)
+    account int,
+    password text,
+    time double,
+    PRIMARY KEY (account, password)
 
 };

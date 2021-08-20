@@ -16,8 +16,8 @@ public class ItemService {
         this.itemRepository = itemRepository;
     }
 
-    public Mono<Item> get(String id){
-        return itemRepository.get(Integer.parseInt(id));
+    public Mono<Item> get(String account){
+        return itemRepository.get(Integer.parseInt(account));
     }
 
     public Flux<Item> getAllItems(){

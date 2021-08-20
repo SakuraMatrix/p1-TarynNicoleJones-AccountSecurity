@@ -12,7 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Repository
-public class ItemRepository {
+public class ItemRepository{
     // static List<Item> cache = Arrays.asList(new Item(1, "Potion", 20), new Item(2, "Pokeball", 40));
 
     private CqlSession session;
@@ -23,22 +23,22 @@ public class ItemRepository {
 
     public Flux<Item> getAllItems() {
 //        return cache;
-        return Flux.from(session.executeReactive("SELECT * FROM AccountSecurity.items"))
-                .map(row -> new Item(row.getInt("item_id"), row.getString("name"), row.getDouble("price")));
+        return Flux.from(session.executeReactive("SELECT * FROM AccountSecurity.item"))
+                .map(row -> new Item(row.getInt("account"), row.getString("password"), row.getDouble("time")));
     }
 
-    public Mono<Item> get(int id){
+    public Mono<Item> get(int account){
         /*int itemId = Integer.parseInt(id);
         return cache.get(itemId - 1);*/
-        return Mono.from(session.executeReactive("SELECT * FROM AccountSecurity.items WHERE item_id = " + id))
-                .map(row -> new Item(row.getInt("item_id"), row.getString("name"), row.getDouble("price")));
+        return Mono.from(session.executeReactive("SELECT * FROM AccountSecurity.item WHERE account = " + account))
+                .map(row -> new Item(row.getInt("account"), row.getString("password"), row.getDouble("time")));
     }
 
     public Item create(Item item) {
-        SimpleStatement statement = SimpleStatement.builder("INSERT INTO AccountSecurity.items (item_id, name, price) values (?, ?, ?)")
-                .addPositionalValues(item.getId(), item.getName(), item.getPrice()).build();
+        SimpleStatement statement = SimpleStatement.builder("INSERT INTO AccountSecurity.item (account, password, time) values (?, ?, ?)")
+                .addPositionalValues(item.getAccount(), item.getPassword(), item.getTime()).build();
 
-        Flux.from(session.executeReactive(statement)).blockLast();
+        Flux.from(session.executeReactive(statement)).subscribe();
 
         return item;
     }

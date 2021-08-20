@@ -3,48 +3,48 @@ package com.github.megrad79.AccountSecurity.domain;
 import java.util.Objects;
 
 public class Item {
-    private int id;
-    private String name;
-    private double price;
+    private int account;
+    private String password;
+    private double time;
 
     public Item() {
     }
 
-    public Item(int id, String name, double price) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
+    public Item(int account, String password, double time) {
+        this.account = account;
+        this.password = password;
+        this.time = time;
     }
 
-    public int getId() {
-        return id;
+    public int getAccount() {
+        return account;
     }
-    public void setId(int id){
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
+    public void setAccount(int account){
+        this.account = account;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getPassword() {
+        return password;
     }
 
-    public double getPrice() {
-        return price;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public double getTime() {
+        return time;
+    }
+
+    public void setTime(double time) {
+        this.time = time;
     }
 
     @Override
     public String toString() {
         return "Item{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", price=" + price +
+                "account=" + account +
+                ", password=" + password + '\'' +
+                ", time=" + time +
                 '}';
     }
 
@@ -53,11 +53,11 @@ public class Item {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Item item = (Item) o;
-        return id == item.id && Double.compare(item.price, price) == 0 && Objects.equals(name, item.name);
+        return account == item.account && Double.compare(item.time, time) == 0 && Objects.equals(password, item.password);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, price);
+        return Objects.hash(account, password, time);
     }
 }

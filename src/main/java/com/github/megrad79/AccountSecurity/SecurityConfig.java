@@ -136,6 +136,10 @@ public class SecurityConfig {
                             .get("/items",
                                     (request, response) -> response.send(itemService.getAllItems().map(Security::toByteBuf).log("http-server")))
 
+                            // Serves a POST request to /items and returns all data.
+                            .post("/Items",
+                                    (request, response) -> response.send(request.receive().asString().map(Security::parseItem).map(itemService::create).map(Security::toByteBuf).log("http-server")))
+
                             // serves web socket to /ws and returns received incoming data as outgoing
                             .ws("/ws",
                                     (wsInbound, wsOutbound) -> wsOutbound.send(wsInbound.receive().retain().log("http-server")))
