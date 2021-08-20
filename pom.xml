@@ -15,6 +15,19 @@
     </properties>
 
     <dependencies>
+        <!--Reactor Netty-->
+        <dependency>
+            <groupId>io.projectreactor.netty</groupId>
+            <artifactId>reactor-netty-core</artifactId>
+            <version>1.0.10</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.projectreactor.netty</groupId>
+            <artifactId>reactor-netty-http</artifactId>
+            <version>1.0.10</version>
+        </dependency>
+
         <!--j Unit 4+-->
         <dependency>
             <groupId>junit</groupId>
@@ -30,19 +43,6 @@
             <version>1.2.3</version>
         </dependency>
 
-        <!--Reactor Netty-->
-        <dependency>
-            <groupId>io.projectreactor.netty</groupId>
-            <artifactId>reactor-netty-core</artifactId>
-            <version>1.0.9</version>
-        </dependency>
-
-        <dependency>
-            <groupId>io.projectreactor.netty</groupId>
-            <artifactId>reactor-netty-http</artifactId>
-            <version>1.0.9</version>
-        </dependency>
-
         <!--Apache Cassandra w/ Datastax-->
         <dependency>
             <groupId>com.datastax.oss</groupId>
@@ -50,11 +50,11 @@
             <version>4.13.0</version>
         </dependency>
 
-        <dependency>
+        <!--<dependency>
             <groupId>com.datastax.oss</groupId>
             <artifactId>java-driver-query-builder</artifactId>
             <version>4.13.0</version>
-        </dependency>
+        </dependency>-->
 
         <!--Spring Core/Framework-->
         <dependency>
@@ -71,11 +71,11 @@
         </dependency>
 
         <!--Jackson-->
-        <!--<dependency>
+        <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>2.12.4</version>
-        </dependency>-->
+        </dependency>
     </dependencies>
 
     

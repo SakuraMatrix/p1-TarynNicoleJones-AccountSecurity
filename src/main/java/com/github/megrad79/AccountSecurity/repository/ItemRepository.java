@@ -20,16 +20,14 @@ public class ItemRepository {
 
     public Flux<Item> getAllItems() {
 //        return cache;
-        return Flux.from(session.executeReactive("SELECT * FROM pokemart.item"))
+        return Flux.from(session.executeReactive("SELECT * FROM AccountSecurity.item"))
                 .map(row -> new Item(row.getInt("item_id"), row.getString("name"), row.getDouble("price")));
     }
 
     public Mono<Item> get(int id){
         /*int itemId = Integer.parseInt(id);
         return cache.get(itemId - 1);*/
-        return Mono.from(session.executeReactive("SELECT * FROM pokemart.item WHERE item_id = " + id))
+        return Mono.from(session.executeReactive("SELECT * FROM AccountSecurity.item WHERE item_id = " + id))
                 .map(row -> new Item(row.getInt("item_id"), row.getString("name"), row.getDouble("price")));
     }
-
-
 }
